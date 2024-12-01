@@ -202,16 +202,12 @@ public class AgentSoccer : Agent
         }
         if (c.gameObject.CompareTag("ball"))
         {
-            float rewardForTouch = 0.2f * Mathf.Max(0.1f, m_BallTouch); // Ensure a minimum reward
-            Debug.Log($"Agent {name} touched the ball. Adding reward: {rewardForTouch}");
-            AddReward(rewardForTouch);
-
+            AddReward(.2f * m_BallTouch);
             var dir = c.contacts[0].point - transform.position;
             dir = dir.normalized;
             c.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
         }
     }
-
 
     public override void OnEpisodeBegin()
     {
